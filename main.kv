@@ -1,0 +1,39 @@
+#: include kv/home_screen.kv
+#: include kv/settings_screen.kv
+
+
+FloatLayout:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'assets/icons/bg.jpg'
+
+    ActionBar:
+        background_color: 0, 0, 0, 0
+        pos_hint: {'top':1}
+
+        ActionView:
+            use_separator: True
+
+            ActionPrevious:
+                font_name: 'Roboto'
+                title: 'Birthday scraper'
+                with_previous: False
+                on_release: app.navigate_to_home()
+
+            ActionButton:
+                markup: True
+                font_name: 'Roboto'
+                text: '[b]settings[/b]'
+                on_release: app.navigate_to_settings()
+
+    ScreenManager:
+        id: screen_manager
+
+        HomeScreen:
+            id: home_screen
+            name: 'home_screen'
+        SettingsScreen:
+            id: settings_screen
+            name: 'settings_screen'
