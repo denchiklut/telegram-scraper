@@ -1,0 +1,96 @@
+#:import environ os.environ
+#:import version kivymd.__version__
+#:import Toolbar libs.baseclass.toolbar.Toolbar
+
+<Toolbar>
+    md_bg_color: app.theme_cls.primary_color
+    background_palette: 'Primary'
+    background_hue: '500'
+    elevation: 10
+    right_action_items: [['brightness-6', lambda x: app.switch_theme_style()], ['replay', lambda x: x]]
+    left_action_items: [["menu", lambda x: app.root.ids.nav_drawer.set_state("toggle")]]
+
+
+<AppContentNavigationDrawer@BoxLayout>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        FloatLayout:
+            size_hint_y: None
+            height: "200dp"
+
+            canvas:
+                Color:
+                    rgba: app.theme_cls.primary_color
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            BoxLayout:
+                id: top_box
+                size_hint_y: None
+                height: "200dp"
+                x: root.parent.x
+                pos_hint: {"top": 1}
+
+                FitImage:
+                    source: f"{environ['APP_ASSETS']}kivymd.png"
+
+            MDIconButton:
+                icon: "close"
+                x: root.parent.x + dp(10)
+                pos_hint: {"top": 1}
+                on_release: root.parent.set_state()
+
+            MDLabel:
+                markup: True
+                text: f"[b]KivyMD[/b]\nVersion: {version}"
+                x: root.parent.x + dp(10)
+                y: root.height - top_box.height + dp(10)
+                size_hint_y: None
+                height: self.texture_size[1]
+
+        NavItem:
+            id: nav_item
+
+
+
+
+<NavItem@RecycleView>
+    key_viewclass: 'viewclass'
+    key_size: 'height'
+
+    RecycleBoxLayout:
+        default_size: None, dp(48)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+        orientation: 'vertical'
+
+RelativeLayout:
+    Toolbar
+        id: toolbar
+        pos_hint: { 'top': 1}
+
+    NavigationLayout:
+        ScreenManager:
+            id: screen_manager
+            pos: (0, -toolbar.height)
+
+            Screen:
+                name: 'home'
+
+                BoxLayout:
+                    orientation: 'vertical'
+
+                    MDLabel:
+                        text: str(toolbar.height)
+
+                    Widget:
+
+
+        MDNavigationDrawer:
+            id: nav_drawer
+
+            AppContentNavigationDrawer:
+                id: content_drawer

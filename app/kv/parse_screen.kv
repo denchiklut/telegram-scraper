@@ -1,0 +1,67 @@
+#:import environ os.environ
+
+<ParseScreen>
+    name: 'parse screen'
+
+    MDBoxLayout:
+        spacing: dp(10)
+        pos_hint: {'top': 1}
+        size_hint_y: 0.9
+
+        ScrollView:
+            size_hint_x: None
+            width: "320dp"
+            do_scroll_x: False
+
+            MDList:
+                id: group_list
+
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: '10dp'
+            adaptive_width: False
+            adaptive_height: True
+            halign: 'center'
+            pos_hint: {'center_x': .25, 'center_y': .5}
+
+            MDCard:
+                orientation: "vertical"
+                padding: "8dp"
+                size_hint: 0.8, None
+                height: dp(130)
+                pos_hint: {"center_x": .5, "center_y": .5}
+
+                MDBoxLayout:
+                    id: box
+                    padding: dp(10)
+                    adaptive_size: True
+                    spacing: dp(20)
+
+                    Image:
+                        size_hint: (None, None)
+                        height: "96dp"
+                        width: "96dp"
+                        source: f"{environ['APP_ASSETS']}csv-icon.png"
+
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        adaptive_size: True
+                        spacing: dp(15)
+                        pos_hint: {"center_x": .5, "center_y": .5}
+
+                        MDLabel:
+                            id: group_label
+                            text: "Title"
+                            theme_text_color: "Secondary"
+                            size_hint_y: None
+                            height: self.texture_size[1]
+                            font_style: 'H6'
+
+                        MDRectangleFlatIconButton:
+                            text: "Сохранить как"
+                            icon: "file"
+                            pos_hint: {'center_x': .5}
+                            on_release: root.save_scv()
+
+            Widget

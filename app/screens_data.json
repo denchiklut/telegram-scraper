@@ -1,0 +1,16 @@
+{
+  "settings_screen": {
+      "kv_string": "settings_screen",
+      "Factory": "SettingsScreen()",
+      "Import": "from baseclass.settings_screen import SettingsScreen",
+      "name_screen": "settings screen",
+      "icon": "settings"
+  },
+    "parse_screen": {
+      "kv_string": "parse_screen",
+      "Factory": "ParseScreen()",
+      "Import": "from baseclass.parse_screen import ParseScreen",
+      "name_screen": "parse screen",
+      "icon": "settings"
+  }
+}
