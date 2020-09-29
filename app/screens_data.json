@@ -12,5 +12,12 @@
       "Import": "from baseclass.parse_screen import ParseScreen",
       "name_screen": "parse screen",
       "icon": "settings"
+  },
+  "add_screen": {
+      "kv_string": "add_screen",
+      "Factory": "AddScreen()",
+      "Import": "from baseclass.add_screen import AddScreen",
+      "name_screen": "add screen",
+      "icon": "settings"
   }
 }
